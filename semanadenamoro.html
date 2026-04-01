@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossa Jornada • 13 de Abril</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --azul-soft: #f0f7ff;
+    --verde-soft: #f0fff4;
+    --lilas-soft: #f8f0ff;
+    --text-dark: #1a1a1a;
+    --text-light: #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+    background: #fff; 
+    color: var(--text-dark); 
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== EFEITO DE REVELAÇÃO (TRANSIÇÃO) ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    background-color: #000;
+    overflow: hidden;
+}
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('fotocapa.jpeg') center/cover no-repeat;
+    filter: grayscale(40%) brightness(0.6);
+    z-index: 1;
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-content h1 { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(3rem, 10vw, 5rem); 
+    font-weight: 300;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+}
+.countdown {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    margin-top: 20px;
+    letter-spacing: 2px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 20px;
+}
+.countdown span { display: inline-block; margin: 0 10px; }
+.label { font-size: 0.7rem; font-family: 'Montserrat'; text-transform: uppercase; display: block; opacity: 0.7; }
+
+/* ===== SLIDES GERAIS ===== */
+.slide {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+}
+.dia-tag { 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 3px; 
+    margin-bottom: 15px; 
+    display: block;
+    color: #888;
+}
+h2 { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 3rem; 
+    font-weight: 300; 
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+p { font-weight: 300; line-height: 1.8; margin-bottom: 20px; }
+
+/* ===== CINEMA CLAQUETE (AJUSTADO) ===== */
+.cinema-slide {
+    width: 100%; min-height: 100vh; background: #000;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; color: #fff; padding-bottom: 50px;
+}
+
+.cinema-body { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    width: 100%; 
+    max-width: 1100px; 
+    padding: 40px 20px; 
+    margin: 0 auto; 
+}
+
+.cinema-columns { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 40px; 
+    margin-top: 30px; 
+    align-items: flex-start; /* Alinha o topo das colunas */
+}
+
+.cinema-left { flex: 1; max-width: 400px; }
+.cinema-left img { width: 100%; border-radius: 8px; margin-bottom: 20px; }
+
+.cinema-right { 
+    flex: 1.5; 
+    width: 100%; 
+    overflow: hidden; 
+}
+
+.carousel { 
+    display: flex; 
+    gap: 20px; 
+    overflow-x: auto; 
+    padding: 10px 5px; 
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth; /* Rolagem mais suave */
+}
+
+.carousel-item { 
+    min-width: 260px; /* Largura fixa para manter padrão */
+    scroll-snap-align: start; 
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-item img { 
+    width: 100%; 
+    height: 380px; /* Altura fixa para todas as fotos */
+    object-fit: cover; /* Corta sobras sem distorcer */
+    border-radius: 12px; 
+}
+
+.carousel-caption { 
+    margin-top: 15px; 
+    font-size: 0.85rem; 
+    color: #ccc; 
+    line-height: 1.5;
+    white-space: normal; /* Permite que o texto quebre linha */
+    min-height: 80px;    /* Espaço reservado para o texto não sumir */
+}
+
+/* ===== AJUSTE FORÇADO CARROSSEL CINEMA ===== */
+
+/* 1. O container que segura as fotos */
+.carousel { 
+    display: flex; 
+    gap: 20px; 
+    overflow-x: auto; 
+    padding: 20px 5px; 
+    scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll no iPhone */
+}
+
+/* 2. O item individual (O segredo está no min-width e flex-basis) */
+.carousel-item { 
+    flex: 0 0 280px; /* Não deixa o item esticar nem encolher, trava em 280px */
+    min-width: 280px; 
+    scroll-snap-align: start; 
+    display: flex;
+    flex-direction: column;
+    background: #111; /* Fundo escuro para destacar o texto */
+    border-radius: 12px;
+    padding-bottom: 15px;
+}
+
+/* 3. A foto (Forçando altura e largura iguais para todas) */
+.carousel-item img { 
+    width: 100% !important; 
+    height: 350px !important; /* Altura fixa obrigatória */
+    object-fit: cover !important; /* Faz o corte perfeito */
+    border-radius: 12px 12px 0 0; /* Arredonda só em cima */
+    display: block;
+}
+
+/* 4. A legenda (Para não cortar nunca) */
+.carousel-caption { 
+    margin-top: 10px; 
+    padding: 0 10px;
+    font-size: 0.85rem; 
+    color: #eee; 
+    line-height: 1.5;
+    white-space: normal !important; /* Força o texto a pular linha */
+    word-wrap: break-word; /* Quebra palavras longas se necessário */
+    overflow: visible !important; /* Garante que o texto apareça */
+    text-align: left;
+    display: block !important;
+}
+
+/* Ajuste para o texto não ficar colado na borda no desktop */
+.cinema-right {
+    flex: 1.5;
+    width: 100%;
+    overflow: hidden; /* Corta o que sobrar do scroll lateral */
+}
+
+@media (max-width: 768px) {
+    /* ... mantenha o que já tem ... */
+    .carousel-item {
+        min-width: 85%; /* No celular, mostra quase a foto toda */
+    }
+    .carousel-item img {
+        height: 320px; /* Um pouco menor no celular */
+    }
+}
+/* ===== SLIDE BROWNIE ===== */
+.brownie-slide {
+    width: 100%; min-height: 100vh; background: url('fundobrownie.jpg') center/cover no-repeat;
+    position: relative; display: flex; align-items: center; justify-content: center;
+}
+.brownie-slide::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+.brownie-content { position: relative; z-index: 2; max-width: 1100px; width: 100%; display: flex; gap: 50px; padding: 40px; color: #fff; align-items: center; }
+.brownie-text { flex: 1; }
+.polaroid-card { width: 320px; background: #e6caa5; padding: 12px 12px 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); text-align: center; color: #333; }
+.polaroid-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+
+/* ===== DIA 3: CUIDADO ===== */
+.care-slide { background-color: #ffffff; border-left: 15px solid #d32f2f; }
+.care-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1100px; width: 100%; align-items: center; padding: 20px; }
+.care-image-box img { width: 100%; max-height: 500px; object-fit: contain; }
+.medical-header { border-bottom: 2px solid #d32f2f; margin-bottom: 20px; padding-bottom: 10px; }
+
+/* ===== DIA 4: PÁSCOA ===== */
+.easter-slide { background: url('fundopascoa.jpg') center/cover no-repeat}  
+.easter-content { background: #fff; position: relative; position: relative; z-index: 1; padding: 40px; border-radius: 50px 50px 20px 20px; max-width: 600px; margin: 0 auto; text-align: center; border: 3px solid #ff99aa; }
+.easter-content::before { content: ""; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.5); border-radius: 47px; z-index: -1; }
+.paws { font-size: 2rem; margin: 20px 0; color: #ff69b4; }
+
+/* ===== DIA 5 e 6: MOTO / EXTENSAO ===== */
+.moto-slide { background: url('fundomoto.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.moto-box { background: rgba(255, 255, 255, 0.95); padding: 40px; max-width: 500px; border-radius: 20px; border-left: 8px solid #cc0000; }
+.extensao-slide { background: url('fundoextensao.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; }
+.extensao-box { background: #fdfdfd; padding: 40px; max-width: 500px; border-radius: 20px; box-shadow: -10px 10px 30px rgba(0,0,0,0.3); }
+
+/* ===== DIA 7: GATINHA ===== */
+.gatinha-slide { background: url('fundogato.jpg') center/cover no-repeat; position: relative; display: flex; align-items: center; justify-content: center; }
+.gatinha-slide::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; }
+.gatinha-card { background: white; padding: 30px; border-radius: 40px; max-width: 800px; display: flex; align-items: center; gap: 30px; position: relative; z-index: 2; border: 3px solid #fdd835; }
+.gatinha-card-foto img { width: 250px; height: 250px; border-radius: 50%; border: 8px solid #fdd835; object-fit: cover; }
+
+/* ===== BOX BASE (8 AO 13) ===== */
+.box-content-base { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); padding: 40px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); max-width: 700px; margin: 0 auto; text-align: center; }
+.brasil-container-novo { display: grid; grid-template-columns: 1fr 1fr; text-align: left; border: 5px solid #009b3a; border-left: 15px solid #ffdf00; max-width: 1000px; gap: 30px; align-items: center; }
+.cueca-container-novo { display: grid; grid-template-columns: 1fr 1fr; text-align: left; border: 4px dashed #ff99aa; max-width: 900px; gap: 30px; align-items: center; }
+.dia9-texto-box { background: rgba(255,255,255,0.9); padding: 40px; border-radius: 30px; max-width: 550px; text-align: center; backdrop-filter: blur(8px); }
+
+.box-final-dia13 { border: 3px double #fbd38d; border-top: 15px solid #fbd38d; background: #fffaf0 !important; max-width: 800px; }
+.carta-carousel { display: flex; gap: 20px; overflow-x: auto; padding: 15px; scroll-snap-type: x mandatory; }
+.carta-item { min-width: 100%; flex-shrink: 0; }
+.carta-item img { width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+@media (max-width: 768px) {
+    .container, .cinema-columns, .brownie-content, .care-container, .gatinha-card, .brasil-container-novo, .cueca-container-novo { 
+        flex-direction: column; grid-template-columns: 1fr; text-align: center; 
+    }
+    .moto-box, .extensao-box { margin: 20px; max-width: 90%; }
+    .gatinha-card-foto img { width: 180px; height: 180px; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <p style="letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem;">Contagem Regressiva</p>
+        <h1>Nossa Jornada</h1>
+        <div class="countdown" id="timer">Calculando...</div>
+    </div>
+</section>
+
+<div id="slides-wrapper"></div>
+
+<script>
+// 1. CONTAGEM REGRESSIVA (VERIFICADA PARA DIA 13)
+const targetDate = new Date("April 13, 2026 00:00:00").getTime();
+function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("timer").innerHTML = "<span>❤️ É HOJE! FELIZ DIA 13! ❤️</span>";
+        return;
+    }
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById("timer").innerHTML = `
+        <span>${d}<span class="label">Dias</span></span>
+        <span>${h}<span class="label">Horas</span></span>
+        <span>${m}<span class="label">Minutos</span></span>
+        <span>${s}<span class="label">Segundos</span></span>
+    `;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// 2. LISTA COMPLETA DE DADOS (TEXTOS ORIGINAIS RECUPERADOS)
+const presentes = [
+    { 
+        dia: 1, titulo: "Brownie & Site", tipo: "editorial",
+        texto: "Esse site é o primeiro presente, porque eu queria te mostrar, do meu jeito, o quanto a nossa história é especial pra mim. Cada dia vai ser um pedacinho nosso e da nossa forma de amar. E junto com ele… um brownie. Pode parecer simples, mas não é. O primeiro presente que você me deu foi um brownie, e esse gesto seu que talvez você nem se lembre foi quando eu comecei a perceber e aceitar que você seria algo muito importante na minha vida. E para o primeiro dia que lembra nosso primeiro presente, selecionei as fotos do nosso começo… meio tímido, meio novo, mas já cheio de sentimento. A gente nem sabia tudo o que ainda vinha pela frente, mas alguma coisa já dizia que era diferente. Obrigada por confiar seu coração a mim."
+    },
+    { 
+        dia: 2, titulo: "Cine Particular", tipo: "cinema", link: "https://open.spotify.com/playlist/3LvnaWmvqrvAiSjwoWlgfN?si=b39825eae98b4d0a&pt=c33fa096700bb6e33413a06867b82256" 
+    },
+    { 
+        dia: 3, titulo: "Quem Ama, Cuida", tipo: "cuidado",
+        texto: "Eu sei que essa barriguinha muitas vezes te maltrata, e meu coração fica apertado junto. Como eu não posso estar 24h grudada em você para te esquentar, pensei em algo que vai ser meu abraço quentinho nos momentos de dor."
+    },
+    { 
+        dia: 4, titulo: "O dia mais doce do ano!", tipo: "pascoa",
+        texto: "O coelhinho passou por aqui e deixou algo tão doce quanto o seu sorriso! Que a nossa Páscoa seja repleta de momentos assim, dividindo o chocolate e a vida. Feliz Páscoa, meu amor!" 
+    },
+    { 
+        dia: 5, titulo: "Sempre Com Você", tipo: "moto", 
+        texto: "Eu sei que o trânsito anda perigoso e, mesmo não podendo estar do seu lado o tempo todo, queria encontrar uma forma de me fazer presente em cada caminho seu. Esse chaveiro não é algo necessariamente útil, mas ele carrega a intenção de te proteger, de te acompanhar, de te lembrar que tem alguém aqui pensando em você a cada ida e volta. Leve esse chaveiro para onde for, mas leve principalmente como um lembrete: sua vida é o meu tesouro mais precioso. Dirija com cuidado, pois eu te espero sempre para o nosso próximo abraço."
+    },
+    { 
+        dia: 6, titulo: "Conectados", tipo: "extensao", 
+        texto: "Para que nunca falte energia para seus projetos e que a nossa conexão seja sempre assim, potente e sem limites. Que essa extensão facilite seu dia a dia tanto quanto você facilita o meu." 
+    },
+    { 
+        dia: 7, titulo: "Mimo para o gato", tipo: "gatinha", 
+        texto: "Eu sei o quanto você cuida bem dela e o quanto esses pelos fazem parte da rotina! Um presentinho para facilitar sua vida e te salvar das alergias constantes que o bixinho te dá." 
+    },
+    { 
+        dia: 8, titulo: "Respiro no meio da semana", tipo: "foto-centro", fundo: "foto1dia8.jpg",
+        texto: "Esse presente é um convite. Não é algo que se pega, nem que se guarda, é algo que se vive. Eu sempre quis parar, respirar e assistir um pôr do sol com você. No meio de uma rotina corrida, de dias cansativos, ter um respiro e um pouco de calmaria. Um lembrete de que, mesmo quando tudo parece acelerado, a gente pode simplesmente parar e aproveitar o agora — juntos."
+    },
+    { 
+        dia: 9, titulo: "Linguagem do Amor", tipo: "estilo-dividido", fundo: "foto1dia9.jpg", 
+        texto: "O presente de hoje tem história. Não é a primeira vez que ele aparece entre a gente e justamente por isso que ele significa tanto. Esse simples gesto que virou um tipo de linguagem que só nós entendemos, um jeito de pedir desculpa sem precisar falar muito, ou de dizer “eu tô aqui” nos dias difíceis. Hoje, ele volta — mas de um jeito diferente pra dizer que sempre estarei aqui." 
+    },
+    { 
+        dia: 10, titulo: "Caldo de Cana & Pastel", tipo: "brasil", fundo: "foto1dia10.jpg",
+        texto: "Nem todo encontro precisa ser planejado demais pra ser bom. Vamos?" 
+    },
+    { 
+        dia: 11, titulo: "Sempre de olho em você viu?", tipo: "cueca", fundo: "teste.jpg", desenho: "cupido.jpg",
+        texto: "O presente de hoje pode até parecer exagero, mas eu prefiro chamar de garantia. Garantia de que, mesmo quando eu não estiver por perto ainda vou estar vigiando." 
+    },
+    { 
+        dia: 12, titulo: "Convite: Vamos almoçar churrasco!", tipo: "foto-centro", fundo: "foto1dia12.jpg", 
+        texto: "Hoje eu só quero te levar pra um momento que tem a sua cara. Esse não teve muito mistério… mas tem muita intenção de encher o buxinho, topa?" 
+    },
+    { 
+        dia: 13, titulo: "Feliz dia 13 meu amor", tipo: "final", fundo: "foto1dia13.jpg" 
+    }
+];
+
+const wrapper = document.getElementById('slides-wrapper');
+const hoje = new Date();
+
+// 3. LOOP DE RENDERIZAÇÃO COM TRAVA DE DATA
+presentes.forEach(p => {
+    // CRIA A DATA DE LIBERAÇÃO (Mês 3 = Abril no JS)
+    const dataLiberacao = new Date(2026, 3, p.dia, 0, 0, 0);
+    
+    // SÓ RENDERIZA SE O DIA CHEGOU
+    if (hoje < dataLiberacao) return;
+
+    const slide = document.createElement('section');
+    slide.classList.add('reveal');
+
+    if(p.tipo === "cinema") {
+        slide.className += " cinema-slide";
+        slide.innerHTML = `
+            <div class="cinema-body">
+                <span class="cinema-day-title">Feliz Dia 02</span>
+                <h2>${p.titulo}</h2>
+                <p class="cinema-explanation">Acho que a melhor forma de te contar minha visão da nossa história sem usar palavras seria através da sua paixão por músicas e filmes.</p>
+                <p class="cinema-explanation">Por isso montei o nosso cinema particular com a nossa trilha sonora e com os filmes que nos marcaram. Cada música dessa playlist me lembra você de algum jeito. Às vezes é uma frase, às vezes é o sentimento inteiro. Tem músicas que me lembram momentos específicos, outras me lembram do seu jeito, das suas manias, da forma como você faz tudo ficar mais leve.</p>
+                <p class="cinema-explanation">E os filmes, você sabe da minha capacidade de avaliadora cinematográfica de uma criança de 5 anos... Porém, eles são quase como capítulos da nossa história. Cada um tem um significado, um momento, uma memória que ficou marcada das tardes de sabádo no início do namoro até os dias de hoje quando ficamos juntos.</p>
+                <p class="cinema-explanation">Esse presente é como a nossa própria trilha sonora tocando ao fundo de um filme que ainda está sendo escrito… e, sinceramente, é o meu favorito. Então quando você ouvir alguma dessas músicas ou lembrar de algum desses filmes… saiba que toda vez que penso neles lembro da gente.</p>
+                <p class="cinema-explanation">Porque, no fim, a gente também virou uma história bonita pra ser contada. ❤️</p>
+                <div class="cinema-columns">
+                    <div class="cinema-left">
+                        <img src="fotocinema.jpg">
+                        <a href="${p.link}" target="_blank">Abrir a nossa trilha sonora</a>
+                    </div>
+                    <div class="cinema-right">
+                        <div class="carousel">
+                            <div class="carousel-item"><img src="filmetrasnformers.jpg"><div class="carousel-caption">Transformers me lembra da criança que você foi um dia.</div></div>
+                            <div class="carousel-item"><img src="filmeup.jpg"><div class="carousel-caption">Up me faz pensar na nossa história e todo futuro que eu ainda quero contigo...</div></div>
+                            <div class="carousel-item"><img src="filmedebiloide.jpg"><div class="carousel-caption">Precisa de comentários?</div></div>
+                            <div class="carousel-item"><img src="filmebarbie.jpg"><div class="carousel-caption">Quando percebi que podia ser todas as versões minhas contigo...</div></div>
+                            <div class="carousel-item"><img src="filmedemon.jpg"><div class="carousel-caption">Percebi que testar o novo sempre é bom, saudades desse dia.</div></div>
+                            <div class="carousel-item"><img src="filmepesadelonacozinha.jpg"><div class="carousel-caption">Os dates mais baratos e na plataforma mais duvidosa do mundo...</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    } 
+    else if (p.tipo === "editorial") {
+        slide.className += " brownie-slide";
+        slide.innerHTML = `
+            <div class="brownie-content">
+                <div class="brownie-text">
+                    <span class="dia">Feliz Dia 01</span>
+                    <h2>${p.titulo}</h2>
+                    <p>Esse site é o primeiro presente, porque eu queria te mostrar, do meu jeito, o quanto a nossa história é especial pra mim. Cada dia vai ser um pedacinho nosso e da nossa forma de amar.</p>
+                    <p>E junto com ele… um brownie.</p>
+                    <p>Pode parecer simples, mas não é. O primeiro presente que você me deu foi um brownie, e foi com esse gesto seu que eu comecei a perceber e aceitar que você seria algo muito importante na minha vida.</p>
+                    <p>Para o primeiro dia que lembra nosso primeiro presente, selecionei as fotos do nosso começo… meio tímido, meio novo, mas já cheio de sentimento. Obrigada por confiar seu coração a mim.</p>
+                </div>
+                <div class="brownie-photos">
+                    <div class="polaroid-card">
+                        <img id="carousel-img" src="foto2dia1.jpg">
+                        <div style="margin-top:10px;">
+                            <strong id="carousel-date">18/04/2023</strong><br>
+                            <span id="carousel-desc" style="font-size:0.8rem">Nossa primeira foto juntos como namorados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }
+    else if (p.tipo === "cuidado") {
+        slide.className += " slide care-slide";
+        slide.innerHTML = `
+            <div class="care-container">
+                <div class="care-image-box"><img src="foto1dia3.png"></div>
+                <div class="care-info">
+                    <div class="medical-header">
+                        <span class="dia-tag">Feliz Dia 3</span>
+                        <h2 style="color:#1976d2">${p.titulo}</h2>
+                    </div>
+                    <div style="background:#e3f2fd; padding:20px; border-radius:12px; border-left:6px solid #1976d2">
+                        <strong style="color:#1976d2; display:block; margin-bottom:8px;">Meu bem:</strong>
+                        <p style="color:#333; margin:0; font-size:0.95rem">${p.texto}</p>
+                    </div>
+                </div>
+            </div>`;
+    }
+    else if (p.tipo === "pascoa") {
+        slide.className += " slide easter-slide";
+        slide.innerHTML = `
+            <div class="easter-content">
+                <span style="font-size:3rem">🐰</span>
+                <span class="dia-tag">Feliz Dia 04 • Páscoa</span>
+                <h2>${p.titulo}</h2>
+                <div class="paws">🐾 🐾 🐾</div>
+                <p style="color:#333">${p.texto}</p>
+            </div>`;
+    }
+    else if (p.tipo === "moto") {
+        slide.className += " slide moto-slide";
+        slide.innerHTML = `<div class="moto-box"><span class="dia-tag" style="color:#cc0000">Feliz Dia 05</span><h2>🔑 ${p.titulo}</h2><p style="color:#333">${p.texto}</p></div>`;
+    }
+    else if (p.tipo === "extensao") {
+        slide.className += " slide extensao-slide";
+        slide.innerHTML = `<div class="extensao-box"><span class="dia-tag">Feliz Dia 06</span><h2 style="color:#1a1a1a">🔌 ${p.titulo}</h2><p style="color:#444">${p.texto}</p></div>`;
+    }
+    else if (p.tipo === "gatinha") {
+        slide.className += " slide gatinha-slide";
+        slide.innerHTML = `
+            <div class="gatinha-card">
+                <div class="gatinha-card-foto"><img src="gato.png"></div>
+                <div class="gatinha-card-text">
+                    <span class="dia-tag">Feliz Dia 07</span>
+                    <h2 style="color:#d4a017">🐾 ${p.titulo}</h2>
+                    <p style="color:#444">${p.texto}</p>
+                </div>
+            </div>`;
+    }
+    else if(p.tipo === "foto-centro") {
+        slide.className += " slide"; 
+        slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
+        const aClasse = p.dia === 12 ? 'churrasco-box-novo' : 'box-central-dia8';
+        slide.innerHTML = `<div class="box-content-base ${aClasse}"><span class="dia-tag">Feliz Dia ${p.dia}</span><h2 style="color:#000">${p.titulo}</h2><p style="color:#333">${p.texto}</p></div>`;
+    }
+    else if(p.tipo === "brasil") {
+        slide.className += " slide";
+        slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
+        slide.innerHTML = `<div class="box-content-base brasil-container-novo"><div><span class="dia-tag">Feliz Dia 10</span><h2 style="color:#000">${p.titulo}</h2><p style="color:#333">${p.texto}</p></div><div><img src="pastelecana.jpg" style="width:100%; border-radius:15px;"></div></div>`;
+    }
+    else if(p.tipo === "cueca") {
+        slide.className += " slide";
+        slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
+        slide.innerHTML = `<div class="box-content-base cueca-container-novo"><div><span class="dia-tag">Feliz Dia 11</span><h2 style="color:#000">${p.titulo}</h2><p style="color:#333">${p.texto}</p></div><div style="text-align:right"><img src="${p.desenho}" style="width:100%; border-radius:15px;"></div></div>`;
+    }
+    else if(p.tipo === "estilo-dividido") {
+        slide.className += " slide"; 
+        slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
+        slide.innerHTML = `<div class="dia9-container"><div class="dia9-texto-box"><span class="dia-tag">Feliz Dia 09</span><h2 style="color:#1a1a1a">${p.titulo}</h2><p style="color:#444">${p.texto}</p></div></div>`;
+    }
+    else if(p.tipo === "final") {
+        slide.className += " slide";
+        slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
+        slide.innerHTML = `
+            <div class="box-content-base box-final-dia13">
+                <span class="dia-tag">Feliz nosso dia!</span>
+                <h2 style="color:#000">${p.titulo}</h2>
+                <div class="carta-carousel">
+                    <div class="carta-item"><img src="carta1.jpg"></div>
+                    <div class="carta-item"><img src="carta2.jpg"></div>
+                </div>
+                <p style="margin-top:20px; font-size:0.9rem">⬅️ Arraste para o lado para ler ➡️</p>
+            </div>`;
+    }
+    wrapper.appendChild(slide);
+});
+
+// 4. CARROSSEL FOTOS DIA 01 (CONFIGURAÇÃO)
+const fotosD1 = [
+    { img: "foto2dia1.jpg", data: "18/04/2023", desc: "Nossa primeira foto juntos como namorados" },
+    { img: "foto1dia1.jpg", data: "07/06/2023", desc: "Minha casa é o seu abraço" },
+    { img: "foto3dia1.jpg", data: "07/06/2023", desc: "Foto que usamos para assumir nosso namoro no Instagram" }
+];
+let phIdx = 0;
+const cImg = document.getElementById("carousel-img");
+if(cImg) {
+    setInterval(() => {
+        phIdx = (phIdx + 1) % fotosD1.length;
+        cImg.src = fotosD1[phIdx].img;
+        document.getElementById("carousel-date").innerText = fotosD1[phIdx].data;
+        document.getElementById("carousel-desc").innerText = fotosD1[phIdx].desc;
+    }, 3000);
+}
+
+// 5. GATILHO DA TRANSIÇÃO AO ROLAR (REVEAL)
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+        }
+    }
+}
+window.addEventListener("scroll", reveal);
+reveal(); // Dispara inicial
+</script>
+</body>
+</html>
