@@ -384,7 +384,7 @@ const hoje = new Date();
 // 3. LOOP DE RENDERIZAÇÃO COM TRAVA DE DATA
 presentes.forEach(p => {
     // CRIA A DATA DE LIBERAÇÃO (Mês 3 = Abril no JS)
-    const dataLiberacao = new Date(2026, 3, p.dia, 0, 0, 0);
+    const dataLiberacao = new Date(2024, 3, p.dia, 0, 0, 0);
     
     // SÓ RENDERIZA SE O DIA CHEGOU
     if (hoje < dataLiberacao) return;
