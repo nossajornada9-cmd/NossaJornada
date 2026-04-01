@@ -300,13 +300,13 @@ p { font-weight: 300; line-height: 1.8; margin-bottom: 20px; }
 
 <script>
 // 1. CONTAGEM REGRESSIVA (VERIFICADA PARA DIA 13)
-const targetDate = new Date("April 13, 2024 00:00:00").getTime();
+const targetDate = new Date("April 13, 2026 00:00:00").getTime();
 function updateCountdown() {
     const now = new Date().getTime();
     const diff = targetDate - now;
 
     if (diff <= 0) {
-        document.getElementById("timer").innerHTML = "<span>❤️ É HOJE! FELIZ DIA 13! ❤️</span>";
+        document.getElementById("timer").innerHTML = "<span> É HOJE! FELIZ DIA 13! ❤️</span>";
         return;
     }
 
@@ -343,7 +343,7 @@ const presentes = [
     },
     { 
         dia: 5, titulo: "Sempre Com Você", tipo: "moto", 
-        texto: "Eu sei que o trânsito anda perigoso e, mesmo não podendo estar do seu lado o tempo todo, queria encontrar uma forma de me fazer presente em cada caminho seu. Esse chaveiro não é algo necessariamente útil, mas ele carrega a intenção de te proteger, de te acompanhar, de te lembrar que tem alguém aqui pensando em você a cada ida e volta. Leve esse chaveiro para onde for, mas leve principalmente como um lembrete: sua vida é o meu tesouro mais precioso. Dirija com cuidado, pois eu te espero sempre para o nosso próximo abraço."
+        texto: "Eu sei que o trânsito anda perigoso e, mesmo não podendo estar do seu lado o tempo todo, queria encontrar uma forma de me fazer presente em cada caminho seu. Não é algo necessariamente útil, mas ele carrega a intenção de te proteger, de te acompanhar, de te lembrar que tem alguém aqui pensando em você a cada ida e volta. Vai ser para você levar aonde for, mas leve principalmente como um lembrete: sua vida é o meu tesouro mais precioso. Sempre dirija com cuidado, pois eu te espero sempre para o nosso próximo abraço."
     },
     { 
         dia: 6, titulo: "Conectados", tipo: "extensao", 
@@ -384,7 +384,7 @@ const hoje = new Date();
 // 3. LOOP DE RENDERIZAÇÃO COM TRAVA DE DATA
 presentes.forEach(p => {
     // CRIA A DATA DE LIBERAÇÃO (Mês 3 = Abril no JS)
-    const dataLiberacao = new Date(2024, 3, p.dia, 0, 0, 0);
+    const dataLiberacao = new Date(2026, 3, p.dia, 0, 0, 0);
     
     // SÓ RENDERIZA SE O DIA CHEGOU
     if (hoje < dataLiberacao) return;
