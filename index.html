@@ -6,7 +6,7 @@
 <title>Nossa Jornada • 13 de Abril</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
-:root { 
+:root {
     --azul-soft: #f0f7ff;
     --verde-soft: #f0fff4;
     --lilas-soft: #f8f0ff;
@@ -306,7 +306,7 @@ function updateCountdown() {
     const diff = targetDate - now;
 
     if (diff <= 0) {
-        document.getElementById("timer").innerHTML = "<span> É HOJE! FELIZ DIA 13! ❤️</span>";
+        document.getElementById("timer").innerHTML = "<span>É HOJE! FELIZ DIA 13! ❤️</span>";
         return;
     }
 
@@ -338,32 +338,32 @@ const presentes = [
         texto: "Eu sei que essa barriguinha muitas vezes te maltrata, e meu coração fica apertado junto. Como eu não posso estar 24h grudada em você para te esquentar, pensei em algo que vai ser meu abraço quentinho nos momentos de dor."
     },
     { 
-        dia: 4, titulo: "O dia mais doce do ano!", tipo: "pascoa",
+        dia: 4, titulo: "Caldo de Cana & Pastel", tipo: "brasil", fundo: "foto1dia10.jpg",
+        texto: "Nem todo encontro precisa ser planejado demais pra ser bom. Vamos?" 
+    },
+    { 
+        dia: 5, titulo: "O dia mais doce do ano!", tipo: "pascoa",
         texto: "O coelhinho passou por aqui e deixou algo tão doce quanto o seu sorriso! Que a nossa Páscoa seja repleta de momentos assim, dividindo o chocolate e a vida. Feliz Páscoa, meu amor!" 
     },
-    { 
-        dia: 5, titulo: "Sempre Com Você", tipo: "moto", 
-        texto: "Eu sei que o trânsito anda perigoso e, mesmo não podendo estar do seu lado o tempo todo, queria encontrar uma forma de me fazer presente em cada caminho seu. Não é algo necessariamente útil, mas ele carrega a intenção de te proteger, de te acompanhar, de te lembrar que tem alguém aqui pensando em você a cada ida e volta. Vai ser para você levar aonde for, mas leve principalmente como um lembrete: sua vida é o meu tesouro mais precioso. Sempre dirija com cuidado, pois eu te espero sempre para o nosso próximo abraço."
+    {
+        dia: 6, titulo: "Sempre Com Você", tipo: "moto", 
+        texto: "Eu sei que o trânsito anda perigoso e, mesmo não podendo estar do seu lado o tempo todo, queria encontrar uma forma de me fazer presente em cada caminho seu. Esse chaveiro não é algo necessariamente útil, mas ele carrega a intenção de te proteger, de te acompanhar, de te lembrar que tem alguém aqui pensando em você a cada ida e volta. Leve esse chaveiro para onde for, mas leve principalmente como um lembrete: sua vida é o meu tesouro mais precioso. Dirija com cuidado, pois eu te espero sempre para o nosso próximo abraço."
     },
     { 
-        dia: 6, titulo: "Conectados", tipo: "extensao", 
+        dia: 7, titulo: "Conectados", tipo: "extensao", 
         texto: "Para que nunca falte energia para seus projetos e que a nossa conexão seja sempre assim, potente e sem limites. Que essa extensão facilite seu dia a dia tanto quanto você facilita o meu." 
-    },
-    { 
-        dia: 7, titulo: "Mimo para o gato", tipo: "gatinha", 
-        texto: "Eu sei o quanto você cuida bem dela e o quanto esses pelos fazem parte da rotina! Um presentinho para facilitar sua vida e te salvar das alergias constantes que o bixinho te dá." 
     },
     { 
         dia: 8, titulo: "Respiro no meio da semana", tipo: "foto-centro", fundo: "foto1dia8.jpg",
         texto: "Esse presente é um convite. Não é algo que se pega, nem que se guarda, é algo que se vive. Eu sempre quis parar, respirar e assistir um pôr do sol com você. No meio de uma rotina corrida, de dias cansativos, ter um respiro e um pouco de calmaria. Um lembrete de que, mesmo quando tudo parece acelerado, a gente pode simplesmente parar e aproveitar o agora — juntos."
     },
     { 
-        dia: 9, titulo: "Linguagem do Amor", tipo: "estilo-dividido", fundo: "foto1dia9.jpg", 
-        texto: "O presente de hoje tem história. Não é a primeira vez que ele aparece entre a gente e justamente por isso que ele significa tanto. Esse simples gesto que virou um tipo de linguagem que só nós entendemos, um jeito de pedir desculpa sem precisar falar muito, ou de dizer “eu tô aqui” nos dias difíceis. Hoje, ele volta — mas de um jeito diferente pra dizer que sempre estarei aqui." 
+        dia: 9, titulo: "Mimo para o gato", tipo: "gatinha", 
+        texto: "Eu sei o quanto você cuida bem dela e o quanto esses pelos fazem parte da rotina! Um presentinho para facilitar sua vida e te salvar das alergias constantes que o bixinho te dá." 
     },
     { 
-        dia: 10, titulo: "Caldo de Cana & Pastel", tipo: "brasil", fundo: "foto1dia10.jpg",
-        texto: "Nem todo encontro precisa ser planejado demais pra ser bom. Vamos?" 
+        dia: 10, titulo: "Linguagem do Amor", tipo: "estilo-dividido", fundo: "foto1dia9.jpg", 
+        texto: "O presente de hoje tem história. Não é a primeira vez que ele aparece entre a gente e justamente por isso que ele significa tanto. Esse simples gesto que virou um tipo de linguagem que só nós entendemos, um jeito de pedir desculpa sem precisar falar muito, ou de dizer “eu tô aqui” nos dias difíceis. Hoje, ele volta — mas de um jeito diferente pra dizer que sempre estarei aqui." 
     },
     { 
         dia: 11, titulo: "Sempre de olho em você viu?", tipo: "cueca", fundo: "teste.jpg", desenho: "cupido.jpg",
@@ -451,7 +451,7 @@ presentes.forEach(p => {
                 <div class="care-image-box"><img src="foto1dia3.png"></div>
                 <div class="care-info">
                     <div class="medical-header">
-                        <span class="dia-tag">Feliz Dia 3</span>
+                        <span class="dia-tag">Feliz Dia 03</span>
                         <h2 style="color:#1976d2">${p.titulo}</h2>
                     </div>
                     <div style="background:#e3f2fd; padding:20px; border-radius:12px; border-left:6px solid #1976d2">
@@ -466,7 +466,7 @@ presentes.forEach(p => {
         slide.innerHTML = `
             <div class="easter-content">
                 <span style="font-size:3rem">🐰</span>
-                <span class="dia-tag">Feliz Dia 04 • Páscoa</span>
+                <span class="dia-tag">Feliz Dia 05 • Páscoa</span>
                 <h2>${p.titulo}</h2>
                 <div class="paws">🐾 🐾 🐾</div>
                 <p style="color:#333">${p.texto}</p>
@@ -474,11 +474,11 @@ presentes.forEach(p => {
     }
     else if (p.tipo === "moto") {
         slide.className += " slide moto-slide";
-        slide.innerHTML = `<div class="moto-box"><span class="dia-tag" style="color:#cc0000">Feliz Dia 05</span><h2>🔑 ${p.titulo}</h2><p style="color:#333">${p.texto}</p></div>`;
+        slide.innerHTML = `<div class="moto-box"><span class="dia-tag" style="color:#cc0000">Feliz Dia 06</span><h2>🔑 ${p.titulo}</h2><p style="color:#333">${p.texto}</p></div>`;
     }
     else if (p.tipo === "extensao") {
         slide.className += " slide extensao-slide";
-        slide.innerHTML = `<div class="extensao-box"><span class="dia-tag">Feliz Dia 06</span><h2 style="color:#1a1a1a">🔌 ${p.titulo}</h2><p style="color:#444">${p.texto}</p></div>`;
+        slide.innerHTML = `<div class="extensao-box"><span class="dia-tag">Feliz Dia 07</span><h2 style="color:#1a1a1a">🔌 ${p.titulo}</h2><p style="color:#444">${p.texto}</p></div>`;
     }
     else if (p.tipo === "gatinha") {
         slide.className += " slide gatinha-slide";
@@ -486,7 +486,7 @@ presentes.forEach(p => {
             <div class="gatinha-card">
                 <div class="gatinha-card-foto"><img src="gato.png"></div>
                 <div class="gatinha-card-text">
-                    <span class="dia-tag">Feliz Dia 07</span>
+                    <span class="dia-tag">Feliz Dia 09</span>
                     <h2 style="color:#d4a017">🐾 ${p.titulo}</h2>
                     <p style="color:#444">${p.texto}</p>
                 </div>
@@ -501,7 +501,7 @@ presentes.forEach(p => {
     else if(p.tipo === "brasil") {
         slide.className += " slide";
         slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
-        slide.innerHTML = `<div class="box-content-base brasil-container-novo"><div><span class="dia-tag">Feliz Dia 10</span><h2 style="color:#000">${p.titulo}</h2><p style="color:#333">${p.texto}</p></div><div><img src="pastelecana.jpg" style="width:100%; border-radius:15px;"></div></div>`;
+        slide.innerHTML = `<div class="box-content-base brasil-container-novo"><div><span class="dia-tag">Feliz Dia 04</span><h2 style="color:#000">${p.titulo}</h2><p style="color:#333">${p.texto}</p></div><div><img src="pastelecana.jpg" style="width:100%; border-radius:15px;"></div></div>`;
     }
     else if(p.tipo === "cueca") {
         slide.className += " slide";
@@ -511,7 +511,7 @@ presentes.forEach(p => {
     else if(p.tipo === "estilo-dividido") {
         slide.className += " slide"; 
         slide.style.background = `url('${p.fundo}') center/cover no-repeat`;
-        slide.innerHTML = `<div class="dia9-container"><div class="dia9-texto-box"><span class="dia-tag">Feliz Dia 09</span><h2 style="color:#1a1a1a">${p.titulo}</h2><p style="color:#444">${p.texto}</p></div></div>`;
+        slide.innerHTML = `<div class="dia9-container"><div class="dia9-texto-box"><span class="dia-tag">Feliz Dia 10</span><h2 style="color:#1a1a1a">${p.titulo}</h2><p style="color:#444">${p.texto}</p></div></div>`;
     }
     else if(p.tipo === "final") {
         slide.className += " slide";
